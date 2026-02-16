@@ -1,0 +1,24 @@
+<h2>Banking Portal Login</h2>
+
+<div style="max-width: 320px; padding: 16px; border: 1px solid #ddd; border-radius: 10px;">
+  <label>Username</label><br />
+  <input style="width: 100%; padding: 8px;"
+         [(ngModel)]="username"
+         placeholder="Enter username" />
+  <br /><br />
+
+  <label>Password</label><br />
+  <input style="width: 100%; padding: 8px;"
+         [(ngModel)]="password"
+         type="password"
+         placeholder="Enter password" />
+  <br /><br />
+
+  <button style="padding: 10px 14px;" (click)="onLogin()">Login</button>
+
+  <p style="color: red;" *ngIf="error">{{ error }}</p>
+
+  <p style="color:#666; font-size: 12px; margin-top:10px;">
+    Demo: enter any username & password.
+  </p>
+</div>

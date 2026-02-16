@@ -1,0 +1,35 @@
+<h2>Digital Banking Dashboard</h2>
+
+<button (click)="logout()">Logout</button>
+
+<div style="display:flex; gap:16px; margin:16px 0; flex-wrap: wrap;">
+  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
+    <b>Balance</b><br /> ₹ {{ balance }}
+  </div>
+  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
+    <b>Total Credit</b><br /> ₹ {{ totalCredit }}
+  </div>
+  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
+    <b>Total Debit</b><br /> ₹ {{ totalDebit }}
+  </div>
+</div>
+
+<h3>Recent Transactions</h3>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 900px;">
+  <tr>
+    <th>ID</th>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Amount</th>
+    <th>Type</th>
+  </tr>
+
+  <tr *ngFor="let t of transactions">
+    <td>{{ t.id }}</td>
+    <td>{{ t.date }}</td>
+    <td>{{ t.description }}</td>
+    <td>₹ {{ t.amount }}</td>
+    <td>{{ t.type }}</td>
+  </tr>
+</table>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "TXN001",
+    "date": "2026-02-10",
+    "description": "Amazon Purchase",
+    "amount": -2500,
+    "type": "Debit"
+  },
+  {
+    "id": "TXN002",
+    "date": "2026-02-09",
+    "description": "Salary Credit",
+    "amount": 50000,
+    "type": "Credit"
+  },
+  {
+    "id": "TXN003",
+    "date": "2026-02-08",
+    "description": "UPI Transfer",
+    "amount": -1200,
+    "type": "Debit"
+  }
+]
