@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly tokenKey = 'token';
+  private readonly userKey = 'username';
 
   login(username: string, password: string): boolean {
     if (username.trim() && password.trim()) {
       localStorage.setItem(this.tokenKey, 'fake-jwt-token');
+      localStorage.setItem(this.userKey, username.trim()); // ✅ store username
       return true;
     }
     return false;
@@ -14,6 +16,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.userKey); // ✅ remove username
   }
 
   isLoggedIn(): boolean {
@@ -22,5 +25,9 @@ export class AuthService {
 
   getToken(): string | null {
     return localStorage.getItem(this.tokenKey);
+  }
+
+  getUsername(): string {
+    return localStorage.getItem(this.userKey) || 'User';
   }
 }

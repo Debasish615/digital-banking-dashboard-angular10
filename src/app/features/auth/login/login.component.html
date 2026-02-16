@@ -1,24 +1,29 @@
-<h2>Banking Portal Login</h2>
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="brand">
+      <div class="logo">DB</div>
+      <div>
+        <h1>Digital Banking</h1>
+        <p>Securely access your account</p>
+      </div>
+    </div>
 
-<div style="max-width: 320px; padding: 16px; border: 1px solid #ddd; border-radius: 10px;">
-  <label>Username</label><br />
-  <input style="width: 100%; padding: 8px;"
-         [(ngModel)]="username"
-         placeholder="Enter username" />
-  <br /><br />
+    <div class="field">
+      <label>Username</label>
+      <input [(ngModel)]="username" placeholder="Enter username" />
+    </div>
 
-  <label>Password</label><br />
-  <input style="width: 100%; padding: 8px;"
-         [(ngModel)]="password"
-         type="password"
-         placeholder="Enter password" />
-  <br /><br />
+    <div class="field">
+      <label>Password</label>
+      <input [(ngModel)]="password" type="password" placeholder="Enter password" />
+    </div>
 
-  <button style="padding: 10px 14px;" (click)="onLogin()">Login</button>
+    <button class="primary" (click)="onLogin()">Login</button>
 
-  <p style="color: red;" *ngIf="error">{{ error }}</p>
+    <p class="error" *ngIf="error">{{ error }}</p>
 
-  <p style="color:#666; font-size: 12px; margin-top:10px;">
-    Demo: enter any username & password.
-  </p>
+    <div class="hint">
+      <span>Demo:</span> Use any username & password
+    </div>
+  </div>
 </div>

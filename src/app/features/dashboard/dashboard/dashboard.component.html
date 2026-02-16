@@ -1,35 +1,112 @@
-<h2>Digital Banking Dashboard</h2>
+<div class="shell">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sb-brand">
+      <div class="sb-logo">DB</div>
+      <div>
+        <div class="sb-title">Digital Banking</div>
+        <div class="sb-sub">Angular 10 • Fintech UI</div>
+      </div>
+    </div>
 
-<button (click)="logout()">Logout</button>
+    <nav class="sb-nav">
+      <div class="sb-item active">Dashboard</div>
+      <div class="sb-item">Transactions</div>
+      <div class="sb-item">Profile</div>
+      <div class="sb-item">Support</div>
+    </nav>
 
-<div style="display:flex; gap:16px; margin:16px 0; flex-wrap: wrap;">
-  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
-    <b>Balance</b><br /> ₹ {{ balance }}
-  </div>
-  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
-    <b>Total Credit</b><br /> ₹ {{ totalCredit }}
-  </div>
-  <div style="padding:12px; border:1px solid #ddd; border-radius:10px; min-width: 180px;">
-    <b>Total Debit</b><br /> ₹ {{ totalDebit }}
-  </div>
+    <div class="sb-footer">
+      <button class="ghost" (click)="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <div class="title">
+        <h2>Dashboard</h2>
+        <p>Overview of your account & recent activity</p>
+      </div>
+
+      <div class="profile">
+        <div class="chip">
+          <div class="avatar">{{ username?.slice(0,1) || 'U' }}</div>
+          <div class="chipText">
+            <div class="name">{{ username }}</div>
+            <div class="role">Frontend (BFSI)</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <div class="label">Balance</div>
+        <div class="value">₹ {{ balance }}</div>
+        <div class="sub">Available balance</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Total Credit</div>
+        <div class="value credit">₹ {{ totalCredit }}</div>
+        <div class="sub">Incoming funds</div>
+      </div>
+
+      <div class="card">
+        <div class="label">Total Debit</div>
+        <div class="value debit">₹ {{ totalDebit }}</div>
+        <div class="sub">Outgoing funds</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panelTop">
+        <div>
+          <h3>Transactions</h3>
+          <span class="pill">{{ filteredTransactions.length }} shown</span>
+        </div>
+
+        <div class="controls">
+          <input
+            class="search"
+            [(ngModel)]="search"
+            placeholder="Search by id, date, description..."
+          />
+
+          <div class="seg">
+            <button (click)="setFilter('All')" [class.on]="typeFilter==='All'">All</button>
+            <button (click)="setFilter('Credit')" [class.on]="typeFilter==='Credit'">Credit</button>
+            <button (click)="setFilter('Debit')" [class.on]="typeFilter==='Debit'">Debit</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="table">
+        <div class="row head">
+          <div>ID</div>
+          <div>Date</div>
+          <div>Description</div>
+          <div class="right">Amount</div>
+          <div>Type</div>
+        </div>
+
+        <div class="row" *ngFor="let t of filteredTransactions">
+          <div class="mono">{{ t.id }}</div>
+          <div>{{ t.date }}</div>
+          <div class="desc">{{ t.description }}</div>
+
+          <div class="right" [ngClass]="t.amount >= 0 ? 'credit' : 'debit'">
+            ₹ {{ t.amount }}
+          </div>
+
+          <div>
+            <span class="badge" [ngClass]="t.amount >= 0 ? 'bCredit' : 'bDebit'">
+              {{ t.amount >= 0 ? 'Credit' : 'Debit' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>
-
-<h3>Recent Transactions</h3>
-
-<table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%; max-width: 900px;">
-  <tr>
-    <th>ID</th>
-    <th>Date</th>
-    <th>Description</th>
-    <th>Amount</th>
-    <th>Type</th>
-  </tr>
-
-  <tr *ngFor="let t of transactions">
-    <td>{{ t.id }}</td>
-    <td>{{ t.date }}</td>
-    <td>{{ t.description }}</td>
-    <td>₹ {{ t.amount }}</td>
-    <td>{{ t.type }}</td>
-  </tr>
-</table>
